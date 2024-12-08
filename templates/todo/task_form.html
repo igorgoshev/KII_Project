@@ -1,0 +1,27 @@
+{% extends 'todo/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="task-container">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h1 class="h3 mb-4">Add New Task</h1>
+            
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.title.errors }}
+                    <label for="{{ form.title.id_for_label }}" class="form-label">Task Title</label>
+                    {% render_field form.title class="form-control form-control-lg" %}
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-plus-lg me-2"></i>Add Task
+                    </button>
+                    <a href="{% url 'task-list' %}" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
